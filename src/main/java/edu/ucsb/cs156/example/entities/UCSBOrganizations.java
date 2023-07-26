@@ -16,6 +16,7 @@ import lombok.Builder;
 public class UCSBOrganizations {
     @Id
     private String orgCode;
+    
     private String orgTranslationShort;
     private String orgTranslation;
     private boolean inactive;
