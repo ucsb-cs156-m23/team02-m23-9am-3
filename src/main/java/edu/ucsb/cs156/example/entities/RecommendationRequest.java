@@ -22,5 +22,5 @@ public class RecommendationRequest {
     private String explanation;
     private LocalDateTime dateRequested;
     private LocalDateTime dateNeeded;
-    private Boolean done;
+    private Boolean done; 
 }
