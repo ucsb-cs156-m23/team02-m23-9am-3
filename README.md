@@ -4,7 +4,7 @@
 |-----------------------------|--------------|---------------|
 | `UCSBOrganization`          | Lawrence     | lawrencewang30|
 | `RecommendationRequest`     | Wenxuan      | InariHimeko   |
-| `MenuItemReview`            | Albert       | Kanagawa-okiNamiUra|
+| `UCSBDiningCommonsMenuItem` | Albert       | Kanagawa-okiNamiUra|
 | `HelpRequest`               | Johnny       | LolExile      |
 | `Articles`                  | Danny        | Danny-You     |
 
