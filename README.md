@@ -1,5 +1,13 @@
 # STARTER-team02
 
+| Table                       | Team Member  | Github Id     |
+|-----------------------------|--------------|---------------|
+| `UCSBOrganization`          | Lawrence     | lawrencewang30|
+| `RecommendationRequest`     | Wenxuan      | InariHimeko   |
+| `MenuItemReview`            | Albert       | Kanagawa-okiNamiUra|
+| `HelpRequest`               | Johnny       | LolExile      |
+| `Articles`                  | Danny        | Danny-You     |
+
 Instructions: <https://ucsb-cs156.github.io/m23/lab/team02.html>
 
 TODO: change heading above to your repo name, e.g. `# team02-m23-9am-4`
