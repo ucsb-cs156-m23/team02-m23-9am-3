@@ -42,7 +42,7 @@ public class UCSBDiningCommonsMenuItemController extends ApiController {
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("")
     public UCSBDiningCommonsMenuItem getById(
-            @Parameter(name="code") @RequestParam Long code) {
+            @Parameter(name="id") @RequestParam Long code) {
         UCSBDiningCommonsMenuItem items = ucsbDiningCommonsMenuItemsRepository.findById(code)
                 .orElseThrow(() -> new EntityNotFoundException(UCSBDiningCommonsMenuItem.class, code));
 
@@ -73,7 +73,7 @@ public class UCSBDiningCommonsMenuItemController extends ApiController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("")
     public Object deleteItem(
-            @Parameter(name="code") @RequestParam Long code) {
+            @Parameter(name="id") @RequestParam Long code) {
         UCSBDiningCommonsMenuItem item = ucsbDiningCommonsMenuItemsRepository.findById(code)
                 .orElseThrow(() -> new EntityNotFoundException(UCSBDiningCommonsMenuItem.class, code));
 
@@ -85,7 +85,7 @@ public class UCSBDiningCommonsMenuItemController extends ApiController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("")
     public UCSBDiningCommonsMenuItem  updateItem(
-            @Parameter(name="code") @RequestParam Long code,
+            @Parameter(name="id") @RequestParam Long code,
             @RequestBody @Valid UCSBDiningCommonsMenuItem  incoming) {
 
         UCSBDiningCommonsMenuItem item = ucsbDiningCommonsMenuItemsRepository.findById(code)
