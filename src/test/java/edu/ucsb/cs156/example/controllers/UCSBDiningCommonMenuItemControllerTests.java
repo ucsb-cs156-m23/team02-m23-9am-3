@@ -3,7 +3,6 @@ package edu.ucsb.cs156.example.controllers;
 import edu.ucsb.cs156.example.repositories.UserRepository;
 import edu.ucsb.cs156.example.testconfig.TestConfig;
 import edu.ucsb.cs156.example.ControllerTestCase;
-import edu.ucsb.cs156.example.entities.UCSBDiningCommons;
 import edu.ucsb.cs156.example.entities.UCSBDiningCommonsMenuItem;
 import edu.ucsb.cs156.example.repositories.UCSBDiningCommonsMenuItemsRepository;
 
@@ -31,7 +30,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@WebMvcTest(controllers = UCSBDiningCommonsController.class)
+@WebMvcTest(controllers = UCSBDiningCommonsMenuItemController.class)
 @Import(TestConfig.class)
 public class UCSBDiningCommonMenuItemControllerTests extends ControllerTestCase{
 
@@ -108,7 +107,7 @@ public class UCSBDiningCommonMenuItemControllerTests extends ControllerTestCase{
                 when(ucsbDiningCommonsMenuItemsRepository.findById(eq(114514L))).thenReturn(Optional.empty());
 
                 // act
-                MvcResult response = mockMvc.perform(get("/api/ucsbdiningcommons?code=114514"))
+                MvcResult response = mockMvc.perform(get("/api/ucsbdiningcommonsmenuitem?code=114514"))
                                 .andExpect(status().isNotFound()).andReturn();
 
                 // assert
@@ -156,7 +155,7 @@ public class UCSBDiningCommonMenuItemControllerTests extends ControllerTestCase{
 
         @WithMockUser(roles = { "ADMIN", "USER" })
         @Test
-        public void an_admin_user_can_post_a_new_commons() throws Exception {
+        public void an_admin_user_can_post_a_new_item() throws Exception {
                 // arrange
 
                 UCSBDiningCommonsMenuItem BPPwC = UCSBDiningCommonsMenuItem.builder()
@@ -169,7 +168,7 @@ public class UCSBDiningCommonMenuItemControllerTests extends ControllerTestCase{
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                post("/api/ucsbdiningcommonsmenuiterm/post?name=BakedPestoPastawithChicken&diningCommonsCode=ortega&station=EntreeSpecials")
+                                post("/api/ucsbdiningcommonsmenuitem/post?name=BakedPestoPastawithChicken&diningCommonsCode=ortega&station=EntreeSpecials")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
@@ -232,25 +231,25 @@ public class UCSBDiningCommonMenuItemControllerTests extends ControllerTestCase{
         public void admin_can_edit_an_existing_item() throws Exception {
                 // arrange
 
-                UCSBDiningCommonsMenuItem BPPwC_Orig = UCSBDiningCommonsMenuItem.builder()
+                UCSBDiningCommonsMenuItem item_Orig = UCSBDiningCommonsMenuItem.builder()
                                 .name("Baked Pesto Pasta with Chicken")
                                 .diningCommonsCode("ortega")
                                 .station("Entree Specials")
                                 .build();
 
-                UCSBDiningCommonsMenuItem BPPwC_Edited = UCSBDiningCommonsMenuItem.builder()
-                                .name("Baked Pesto Pasta with Chicken Breast")
-                                .diningCommonsCode("ortega")
-                                .station("Entree Specials")
+                UCSBDiningCommonsMenuItem item_Edited = UCSBDiningCommonsMenuItem.builder()
+                                .name("Cream of Broccoli Soup (v)")
+                                .diningCommonsCode("portola")
+                                .station("Greens & Grains")
                                 .build();
 
-                String requestBody = mapper.writeValueAsString(BPPwC_Edited);
+                String requestBody = mapper.writeValueAsString(item_Edited);
 
-                when(ucsbDiningCommonsMenuItemsRepository.findById(eq(1L))).thenReturn(Optional.of(BPPwC_Orig));
+                when(ucsbDiningCommonsMenuItemsRepository.findById(eq(1L))).thenReturn(Optional.of(item_Orig));
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                put("/api/ucsbdiningcommonsmenuitems?code=1")
+                                put("/api/ucsbdiningcommonsmenuitem?code=1")
                                                 .contentType(MediaType.APPLICATION_JSON)
                                                 .characterEncoding("utf-8")
                                                 .content(requestBody)
@@ -259,7 +258,7 @@ public class UCSBDiningCommonMenuItemControllerTests extends ControllerTestCase{
 
                 // assert
                 verify(ucsbDiningCommonsMenuItemsRepository, times(1)).findById(1L);
-                verify(ucsbDiningCommonsMenuItemsRepository, times(1)).save(BPPwC_Edited); // should be saved with updated info
+                verify(ucsbDiningCommonsMenuItemsRepository, times(1)).save(item_Edited); // should be saved with updated info
                 String responseString = response.getResponse().getContentAsString();
                 assertEquals(requestBody, responseString);
         }
