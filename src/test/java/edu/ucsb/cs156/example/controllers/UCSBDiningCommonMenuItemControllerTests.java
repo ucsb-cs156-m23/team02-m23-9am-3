@@ -168,7 +168,7 @@ public class UCSBDiningCommonMenuItemControllerTests extends ControllerTestCase{
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                post("/api/ucsbdiningcommonsmenuitem/post?name=BakedPestoPastawithChicken&diningCommonsid=ortega&station=EntreeSpecials")
+                                post("/api/ucsbdiningcommonsmenuitem/post?name=BakedPestoPastawithChicken&diningCommonsCode=ortega&station=EntreeSpecials")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
