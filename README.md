@@ -6,7 +6,8 @@
 | `RecommendationRequest`     | Wenxuan      | InariHimeko   |
 | `UCSBDiningCommonsMenuItem` | Albert       | Kanagawa-okiNamiUra|
 | `HelpRequest`               | Johnny       | LolExile      |
-| `Articles`                  | Danny        | Danny-You     |
+| `Articles`                  | Danny        |               |
+| `MenuItemReview`            | (unassigned) |               |
 
 Instructions: <https://ucsb-cs156.github.io/m23/lab/team02.html>
 
