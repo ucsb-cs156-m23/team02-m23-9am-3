@@ -68,7 +68,7 @@ public class ArticlesController extends ApiController {
 
         log.info("dateAdded={}", dateAdded);
 
-        Articles articles = new articles();
+        Articles articles = new Articles();
         articles.setTitle(title);
         articles.setUrl(url);
         articles.setExplanation(explanation);
