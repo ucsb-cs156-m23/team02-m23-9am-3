@@ -260,7 +260,7 @@ public class ArticlesControllerTests extends ControllerTestCase {
                 // arrange
 
                 LocalDateTime dateAdded1 = LocalDateTime.parse("2022-04-20T00:00:00");
-                LocalDateTime dateAdded2 = LocalDateTime.parse("2022-04-20T00:00:00");
+                LocalDateTime dateAdded2 = LocalDateTime.parse("2022-04-19T00:00:00");
 
                 Articles articleOrig = Articles.builder()
                                 .title("Using testing-playground with React Testing Library")
@@ -271,10 +271,10 @@ public class ArticlesControllerTests extends ControllerTestCase {
                                 .build();
 
                 Articles articleEdited = Articles.builder()
-                                .title("Using testing-playground with React Testing Library (new)")
-                                .url("https://dev.to/katieraby/using-testing-playground-with-react-testing-library-26j7")
-                                .explanation("Helpful when we get to front end development")
-                                .email("phtcon@ucsb.edu")
+                                .title("Handy Spring Utility Classes")
+                                .url("https://twitter.com/maciejwalkowiak/status/1511736828369719300?t=gGXpmBH4y4eY9OBSUInZEg&s=09")
+                                .explanation("A lot of really useful classes are built into Spring")
+                                .email("cgaucho@ucsb.edu")
                                 .dateAdded(dateAdded2)
                                 .build();
 
