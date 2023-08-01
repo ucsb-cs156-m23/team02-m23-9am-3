@@ -104,7 +104,7 @@ public class ArticlesControllerTests extends ControllerTestCase {
 
                 // assert
 
-                verify(ucsbDateRepository, times(1)).findById(eq(1L));
+                verify(articlesRepository, times(1)).findById(eq(1L));
                 String expectedJson = mapper.writeValueAsString(articles);
                 String responseString = response.getResponse().getContentAsString();
                 assertEquals(expectedJson, responseString);
