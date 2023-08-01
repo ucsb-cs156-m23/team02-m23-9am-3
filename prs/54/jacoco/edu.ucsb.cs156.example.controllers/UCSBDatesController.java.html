@@ -63,20 +63,19 @@ import java.time.LocalDateTime;
             @Parameter(name=&quot;name&quot;) @RequestParam String name,
             @Parameter(name=&quot;localDateTime&quot;, description=&quot;date (in iso format, e.g. YYYY-mm-ddTHH:MM:SS; see https://en.wikipedia.org/wiki/ISO_8601)&quot;, example=&quot;2023-12-01T13:15&quot;) @RequestParam(&quot;localDateTime&quot;) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime localDateTime) throws JsonProcessingException {
 
-
         // For an explanation of @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
         // See: https://www.baeldung.com/spring-date-parameters
 
-<span class="fc" id="L70">        log.info(&quot;localDateTime={}&quot;, localDateTime);</span>
+<span class="fc" id="L69">        log.info(&quot;localDateTime={}&quot;, localDateTime);</span>
 
-<span class="fc" id="L72">        UCSBDate ucsbDate = new UCSBDate();</span>
-<span class="fc" id="L73">        ucsbDate.setQuarterYYYYQ(quarterYYYYQ);</span>
-<span class="fc" id="L74">        ucsbDate.setName(name);</span>
-<span class="fc" id="L75">        ucsbDate.setLocalDateTime(localDateTime);</span>
+<span class="fc" id="L71">        UCSBDate ucsbDate = new UCSBDate();</span>
+<span class="fc" id="L72">        ucsbDate.setQuarterYYYYQ(quarterYYYYQ);</span>
+<span class="fc" id="L73">        ucsbDate.setName(name);</span>
+<span class="fc" id="L74">        ucsbDate.setLocalDateTime(localDateTime);</span>
 
-<span class="fc" id="L77">        UCSBDate savedUcsbDate = ucsbDateRepository.save(ucsbDate);</span>
+<span class="fc" id="L76">        UCSBDate savedUcsbDate = ucsbDateRepository.save(ucsbDate);</span>
 
-<span class="fc" id="L79">        return savedUcsbDate;</span>
+<span class="fc" id="L78">        return savedUcsbDate;</span>
     }
 
     @Operation(summary= &quot;Delete a UCSBDate&quot;)
@@ -84,11 +83,11 @@ import java.time.LocalDateTime;
     @DeleteMapping(&quot;&quot;)
     public Object deleteUCSBDate(
             @Parameter(name=&quot;id&quot;) @RequestParam Long id) {
-<span class="fc" id="L87">        UCSBDate ucsbDate = ucsbDateRepository.findById(id)</span>
-<span class="fc" id="L88">                .orElseThrow(() -&gt; new EntityNotFoundException(UCSBDate.class, id));</span>
+<span class="fc" id="L86">        UCSBDate ucsbDate = ucsbDateRepository.findById(id)</span>
+<span class="fc" id="L87">                .orElseThrow(() -&gt; new EntityNotFoundException(UCSBDate.class, id));</span>
 
-<span class="fc" id="L90">        ucsbDateRepository.delete(ucsbDate);</span>
-<span class="fc" id="L91">        return genericMessage(&quot;UCSBDate with id %s deleted&quot;.formatted(id));</span>
+<span class="fc" id="L89">        ucsbDateRepository.delete(ucsbDate);</span>
+<span class="fc" id="L90">        return genericMessage(&quot;UCSBDate with id %s deleted&quot;.formatted(id));</span>
     }
 
     @Operation(summary= &quot;Update a single date&quot;)
@@ -98,16 +97,16 @@ import java.time.LocalDateTime;
             @Parameter(name=&quot;id&quot;) @RequestParam Long id,
             @RequestBody @Valid UCSBDate incoming) {
 
-<span class="fc" id="L101">        UCSBDate ucsbDate = ucsbDateRepository.findById(id)</span>
-<span class="fc" id="L102">                .orElseThrow(() -&gt; new EntityNotFoundException(UCSBDate.class, id));</span>
+<span class="fc" id="L100">        UCSBDate ucsbDate = ucsbDateRepository.findById(id)</span>
+<span class="fc" id="L101">                .orElseThrow(() -&gt; new EntityNotFoundException(UCSBDate.class, id));</span>
 
-<span class="fc" id="L104">        ucsbDate.setQuarterYYYYQ(incoming.getQuarterYYYYQ());</span>
-<span class="fc" id="L105">        ucsbDate.setName(incoming.getName());</span>
-<span class="fc" id="L106">        ucsbDate.setLocalDateTime(incoming.getLocalDateTime());</span>
+<span class="fc" id="L103">        ucsbDate.setQuarterYYYYQ(incoming.getQuarterYYYYQ());</span>
+<span class="fc" id="L104">        ucsbDate.setName(incoming.getName());</span>
+<span class="fc" id="L105">        ucsbDate.setLocalDateTime(incoming.getLocalDateTime());</span>
 
-<span class="fc" id="L108">        ucsbDateRepository.save(ucsbDate);</span>
+<span class="fc" id="L107">        ucsbDateRepository.save(ucsbDate);</span>
 
-<span class="fc" id="L110">        return ucsbDate;</span>
+<span class="fc" id="L109">        return ucsbDate;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
