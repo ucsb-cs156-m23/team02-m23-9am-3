@@ -59,7 +59,7 @@ public class ArticlesControllerTests extends ControllerTestCase {
 
         @Test
         public void logged_out_users_cannot_get_by_id() throws Exception {
-                mockMvc.perform(get("/api/articles?id=7"))
+                mockMvc.perform(get("/api/articles?id=13"))
                                 .andExpect(status().is(403)); // logged out users can't get by id
         }
 
@@ -96,15 +96,15 @@ public class ArticlesControllerTests extends ControllerTestCase {
                                 .dateAdded(dateAdded)
                                 .build();
 
-                when(articlesRepository.findById(eq(1L))).thenReturn(Optional.of(articles));
+                when(articlesRepository.findById(eq(13L))).thenReturn(Optional.of(articles));
 
                 // act
-                MvcResult response = mockMvc.perform(get("/api/articles?id=7"))
+                MvcResult response = mockMvc.perform(get("/api/articles?id=13"))
                                 .andExpect(status().isOk()).andReturn();
 
                 // assert
 
-                verify(articlesRepository, times(1)).findById(eq(1L));
+                verify(articlesRepository, times(1)).findById(eq(13L));
                 String expectedJson = mapper.writeValueAsString(articles);
                 String responseString = response.getResponse().getContentAsString();
                 assertEquals(expectedJson, responseString);
@@ -116,18 +116,18 @@ public class ArticlesControllerTests extends ControllerTestCase {
 
                 // arrange
 
-                when(articlesRepository.findById(eq(5L))).thenReturn(Optional.empty());
+                when(articlesRepository.findById(eq(13L))).thenReturn(Optional.empty());
 
                 // act
-                MvcResult response = mockMvc.perform(get("/api/articles?id=5"))
+                MvcResult response = mockMvc.perform(get("/api/articles?id=13"))
                                 .andExpect(status().isNotFound()).andReturn();
 
                 // assert
 
-                verify(articlesRepository, times(1)).findById(eq(5L));
+                verify(articlesRepository, times(1)).findById(eq(13L));
                 Map<String, Object> json = responseToJson(response);
                 assertEquals("EntityNotFoundException", json.get("type"));
-                assertEquals("UCSBDate with id 5 not found", json.get("message"));
+                assertEquals("Articles with id 13 not found", json.get("message"));
         }
 
         @WithMockUser(roles = { "USER" })
@@ -218,20 +218,20 @@ public class ArticlesControllerTests extends ControllerTestCase {
                                 .dateAdded(dateAdded1)
                                 .build();
 
-                when(articlesRepository.findById(eq(17L))).thenReturn(Optional.of(articles1));
+                when(articlesRepository.findById(eq(13L))).thenReturn(Optional.of(articles1));
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                delete("/api/articles?id=17")
+                                delete("/api/articles?id=13")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
                 // assert
-                verify(articlesRepository, times(1)).findById(17L);
+                verify(articlesRepository, times(1)).findById(13L);
                 verify(articlesRepository, times(1)).delete(any());
 
                 Map<String, Object> json = responseToJson(response);
-                assertEquals("Article with id 17 deleted", json.get("message"));
+                assertEquals("Article with id 13 deleted", json.get("message"));
         }
 
         @WithMockUser(roles = { "ADMIN", "USER" })
@@ -251,7 +251,7 @@ public class ArticlesControllerTests extends ControllerTestCase {
                 // assert
                 verify(articlesRepository, times(1)).findById(13L);
                 Map<String, Object> json = responseToJson(response);
-                assertEquals("Article with id 13 not found", json.get("message"));
+                assertEquals("Articles with id 13 not found", json.get("message"));
         }
 
         @WithMockUser(roles = { "ADMIN", "USER" })
@@ -280,11 +280,11 @@ public class ArticlesControllerTests extends ControllerTestCase {
 
                 String requestBody = mapper.writeValueAsString(articleEdited);
 
-                when(articlesRepository.findById(eq(65L))).thenReturn(Optional.of(articleOrig));
+                when(articlesRepository.findById(eq(13L))).thenReturn(Optional.of(articleOrig));
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                put("/api/ucsbdates?id=65")
+                                put("/api/articles?id=13")
                                                 .contentType(MediaType.APPLICATION_JSON)
                                                 .characterEncoding("utf-8")
                                                 .content(requestBody)
@@ -292,7 +292,7 @@ public class ArticlesControllerTests extends ControllerTestCase {
                                 .andExpect(status().isOk()).andReturn();
 
                 // assert
-                verify(articlesRepository, times(1)).findById(65L);
+                verify(articlesRepository, times(1)).findById(13L);
                 verify(articlesRepository, times(1)).save(articleEdited); // should be saved with correct user
                 String responseString = response.getResponse().getContentAsString();
                 assertEquals(requestBody, responseString);
@@ -315,11 +315,11 @@ public class ArticlesControllerTests extends ControllerTestCase {
 
                 String requestBody = mapper.writeValueAsString(EditedArticle);
 
-                when(articlesRepository.findById(eq(63L))).thenReturn(Optional.empty());
+                when(articlesRepository.findById(eq(13L))).thenReturn(Optional.empty());
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                put("/api/articles?id=63")
+                                put("/api/articles?id=13")
                                                 .contentType(MediaType.APPLICATION_JSON)
                                                 .characterEncoding("utf-8")
                                                 .content(requestBody)
@@ -327,9 +327,9 @@ public class ArticlesControllerTests extends ControllerTestCase {
                                 .andExpect(status().isNotFound()).andReturn();
 
                 // assert
-                verify(articlesRepository, times(1)).findById(63L);
+                verify(articlesRepository, times(1)).findById(13L);
                 Map<String, Object> json = responseToJson(response);
-                assertEquals("Article with id 63 not found", json.get("message"));
+                assertEquals("Articles with id 13 not found", json.get("message"));
 
         }
 }
