@@ -296,7 +296,7 @@ public class UCSBOrganizationsControllerTests extends ControllerTestCase {
                         .orgCode("sky")
                         .orgTranslationShort("skyDivingClub")
                         .orgTranslation("skyDivingClubAtUCSB")
-                        .inactive(false)
+                        .inactive(true)
                         .build();
         
         String requestBody = mapper.writeValueAsString(editedOrganization);
