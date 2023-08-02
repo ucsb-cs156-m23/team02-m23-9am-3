@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-m23/team02-m23-9am-3
 owner: ucsb-cs156-m23
 repo_name: team02-m23-9am-3
-pull_requests: []
+pull_requests: [{"author":{"id":"MDQ6VXNlcjcyODI4OTQ1","is_bot":false,"login":"LolExile","name":"Johnny Wang "},"headRefName":"Johnny-HelpRequestController","number":58,"title":"JW - Final Commit for the controllers","url":"https://github.com/ucsb-cs156-m23/team02-m23-9am-3/pull/58"}]
